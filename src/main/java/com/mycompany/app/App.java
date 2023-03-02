@@ -2,8 +2,8 @@ package com.mycompany.app;
 import java.nio.ByteBuffer;
 
 public class App {
-    public static int directMB = 100; // 100MB;
-    public static int numThreads = 10;
+    public static int directMB = 300; // 100MB;
+    public static int numThreads = 30;
     public static Thread[] threads = new Thread[numThreads];
 
     public App() {
