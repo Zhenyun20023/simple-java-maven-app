@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="AppRun" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.mycompany.app.App" />
+    <module name="my-app" />
+    <option name="VM_PARAMETERS" value="-Xlog:gc+age*,safepoint:file=/tmp/logs/gc.log:time,level,tags:filecount=5,filesize=100M -Xms500M -Xmx500M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:NativeMemoryTracking=summary -XX:+AlwaysPreTouch" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.mycompany.app.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
