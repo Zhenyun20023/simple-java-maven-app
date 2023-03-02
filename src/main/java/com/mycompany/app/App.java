@@ -11,9 +11,13 @@ public class App {
 
     public static void allocateDirect() {
         // Allocate a direct byte buffer with capacity of 1024 bytes
-        ByteBuffer directBuffer = ByteBuffer.allocateDirect((1024*1024* directMB));
+        ByteBuffer directBuffer = null;
+        for(int i=0; i< directMB; i++) {
+            directBuffer = ByteBuffer.allocateDirect((1024 * 1024));
+        }
 
         // Write some data to the buffer
+
         String data = "some data. ";
         byte[] bytes = data.getBytes();
         directBuffer.put(bytes);
