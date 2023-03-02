@@ -1,5 +1,7 @@
 package com.mycompany.app;
 import java.nio.ByteBuffer;
+import java.util.Vector;
+
 
 public class App {
     public static int directMB = 300; // 100MB;
@@ -11,22 +13,18 @@ public class App {
 
     public static void allocateDirect() {
         // Allocate a direct byte buffer with capacity of 1024 bytes
-        ByteBuffer directBuffer = null;
+        System.out.printf("Allocating %d MB of direct Buffer. \n", directMB);
+
+        Vector<ByteBuffer> buffers = new Vector<ByteBuffer>();
         for(int i=0; i< directMB; i++) {
-            directBuffer = ByteBuffer.allocateDirect((1024 * 1024));
+            ByteBuffer buff = ByteBuffer.allocateDirect((1024 * 1024));
+            buffers.add(buff);
+
+            String data = "some data. ";
+            byte[] bytes = data.getBytes();
+            buff.put(bytes);
+            System.out.print(".");
         }
-
-        // Write some data to the buffer
-
-        String data = "some data. ";
-        byte[] bytes = data.getBytes();
-        directBuffer.put(bytes);
-
-        // Read the data from the buffer
-        directBuffer.flip();
-        byte[] buffer = new byte[bytes.length];
-        directBuffer.get(buffer);
-        System.out.printf("Allocated %d MB of direct Buffer. \n", directMB);
     }
 
     public static void startThreads() {
