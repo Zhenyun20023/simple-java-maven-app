@@ -2,7 +2,7 @@ package com.mycompany.app;
 import java.nio.ByteBuffer;
 
 public class App {
-    public static int directMB = 300; // 100MB;
+    public static int directMB = 600; // 100MB;
     public static int numThreads = 30;
     public static Thread[] threads = new Thread[numThreads];
 
