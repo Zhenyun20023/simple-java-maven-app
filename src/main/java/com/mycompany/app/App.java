@@ -4,7 +4,7 @@ import java.util.Vector;
 
 
 public class App {
-    public static int directMB = 300; // 100MB;
+    public static int directMB = 800; // 100MB;
     public static int numThreads = 30;
     public static Thread[] threads = new Thread[numThreads];
 
