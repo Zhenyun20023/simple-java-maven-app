@@ -21,8 +21,8 @@ public class App {
             file = new RandomAccessFile("/tmp/file.400MB", "rw");
             FileChannel channel = file.getChannel();
             MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_WRITE, 0, channel.size());
-            System.out.printf(" the file size: %d \n", channel.size());
-            int offset = mmapMB * 1024 * 512; // half the mmapMB;
+            System.out.printf(" The file size: %d \n", filesize);
+            int offset = mmapMB * 1024 * 1024; //
             channel.position(offset);
             buffer.put("some data".getBytes());
             buffer.force();
