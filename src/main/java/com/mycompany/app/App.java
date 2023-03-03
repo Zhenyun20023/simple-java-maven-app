@@ -1,16 +1,37 @@
 package com.mycompany.app;
 import java.nio.ByteBuffer;
 import java.util.Vector;
+import java.io.*;
+import java.nio.*;
+import java.nio.channels.*;
 
 
 public class App {
-    public static int directMB = 800; // 100MB;
+    public static int directMB = 100; // 100MB;
+    public static int mmapMB = 100; // MB;
     public static int numThreads = 30;
     public static Thread[] threads = new Thread[numThreads];
 
     public App() {
     }
 
+    public static void allocateMMAP() {
+        RandomAccessFile file = null;
+        try {
+            file = new RandomAccessFile("/tmp/file.400MB", "rw");
+            FileChannel channel = file.getChannel();
+            MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_WRITE, 0, channel.size());
+            System.out.printf(" the file size: %d \n", channel.size());
+            int offset = mmapMB * 1024 * 512; // half the mmapMB;
+            channel.position(offset);
+            buffer.put("some data".getBytes());
+            buffer.force();
+            file.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static void allocateDirect() {
         // Allocate a direct byte buffer with capacity of 1024 bytes
         System.out.printf("Allocating %d MB of direct Buffer. \n", directMB);
@@ -25,6 +46,7 @@ public class App {
             buff.put(bytes);
             System.out.print(".");
         }
+        System.out.println("allocated.");
     }
 
     public static void startThreads() {
@@ -38,10 +60,7 @@ public class App {
     public static void main(String[] args) {
         allocateDirect();
         startThreads();
-
-
-
-
+        allocateMMAP();
         //
         System.out.println("Program is running. ");
         try {
