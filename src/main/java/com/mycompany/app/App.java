@@ -7,9 +7,9 @@ import java.nio.channels.*;
 
 
 public class App {
-    public static int directMB = 100; // 100MB;
+    public static int directMB = 300; // 100MB;
     public static int mmapMB = 100; // MB;
-    public static int numThreads = 30;
+    public static int numThreads = 50;
     public static Thread[] threads = new Thread[numThreads];
 
     public App() {
