@@ -7,7 +7,7 @@ import java.nio.channels.*;
 
 
 public class App {
-    public static int numThreads = 100;
+    public static int numThreads = 200;
     public static int directMB = 10; // 10MB, each thread;
     public static int mmapMB = 100; // mmap file;
     public static Thread[] threads = new Thread[numThreads];
@@ -54,7 +54,7 @@ public class App {
                 Thread.sleep(10 * 1000);
             } catch (Exception e) {
             }
-            System.out.printf("The result is %d .\n", result);
+            System.out.printf("NumThreads= %d, each %d MB; The result is %d .\n", numThreads, directMB, result);
         }
     }
 }

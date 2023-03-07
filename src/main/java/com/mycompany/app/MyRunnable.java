@@ -21,7 +21,7 @@ public class MyRunnable implements Runnable {
       for(int i=0; i< 1000 *100; i++) {
         Thread.sleep(5 * 1000);
         App.result += i;
-        App.result /= 1000;
+        App.result = App.result % 1000;
       }
     } catch (Exception e) {
 
