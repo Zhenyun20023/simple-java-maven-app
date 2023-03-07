@@ -35,9 +35,10 @@ public class MyRunnable implements Runnable {
 
         String data = "some data. ";
         byte[] bytes = data.getBytes();
-        buff.put(bytes);
-        System.out.print(".");
+        int loopNum = 1024*1024/data.length();
+        for(int m=0; m< loopNum; m++)
+           buff.put(bytes);
       }
-      System.out.println("allocated.");
+      System.out.printf("I allocated %d MB of allocateDirect().\n", App.directMB);
     }
 }
