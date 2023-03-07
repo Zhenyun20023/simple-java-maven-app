@@ -40,7 +40,7 @@ public class RunnerRandomDirect implements Runnable {
       ByteBuffer buff = ByteBuffer.allocateDirect(rand);
       buffers.add(buff);
       try {
-        Thread.sleep(2 * 1000);
+        Thread.sleep(500);
       } catch (Exception e) {
       }
     }
