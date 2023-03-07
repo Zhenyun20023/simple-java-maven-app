@@ -18,7 +18,11 @@ public class MyRunnable implements Runnable {
 
     try {
       allocateDirect();
-      Thread.sleep(App.sleepSeconds * 1000);
+      for(int i=0; i< 1000 *100; i++) {
+        Thread.sleep(5 * 1000);
+        App.result += i;
+        App.result /= 1000;
+      }
     } catch (Exception e) {
 
     }
@@ -35,7 +39,7 @@ public class MyRunnable implements Runnable {
 
         String data = "some data. ";
         byte[] bytes = data.getBytes();
-        int loopNum = 1024*1024/data.length();
+        int loopNum = 1024*1024/bytes.length;
         for(int m=0; m< loopNum; m++)
            buff.put(bytes);
       }

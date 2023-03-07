@@ -10,8 +10,9 @@ public class App {
     public static int numThreads = 100;
     public static int directMB = 10; // 10MB, each thread;
     public static int mmapMB = 100; // mmap file;
-    public static int sleepSeconds = 5 * 3600;
     public static Thread[] threads = new Thread[numThreads];
+
+    public static int result = 0; // output this;
 
     public App() {
     }
@@ -48,11 +49,12 @@ public class App {
         allocateMMAP();
         //
         System.out.println("Program is running. ");
-        try {
-            Thread.sleep( sleepSeconds * 1000);
-        } catch (Exception e) {
+        for(int i=0; i<1000*100; i++) {
+            try {
+                Thread.sleep(10 * 1000);
+            } catch (Exception e) {
+            }
+            System.out.printf("The result is %d .\n", result);
         }
-        System.out.println("Program exited. ");
-
     }
 }
