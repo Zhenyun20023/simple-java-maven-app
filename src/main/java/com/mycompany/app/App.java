@@ -1,6 +1,4 @@
 package com.mycompany.app;
-import java.nio.ByteBuffer;
-import java.util.Vector;
 import java.io.*;
 import java.nio.*;
 import java.nio.channels.*;
@@ -8,7 +6,7 @@ import java.nio.channels.*;
 
 public class App {
     public static int numThreads = 100;
-    public static int directMB = 20; // 10MB, each thread;
+    public static int directMB = 10; // 10MB, each thread;
     public static int mmapMB = 100; // mmap file;
     public static Thread[] threads = new Thread[numThreads];
 
@@ -38,7 +36,7 @@ public class App {
 
     public static void startThreads() {
         for (int i = 0; i < numThreads; i++) {
-            threads[i] = new Thread(new MyRunnable(i));
+            threads[i] = new Thread(new RunnerAllocate(i));
             threads[i].start();
         }
 

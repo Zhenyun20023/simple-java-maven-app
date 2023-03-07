@@ -4,11 +4,11 @@ import java.nio.ByteBuffer;
 import java.util.Vector;
 
 
-public class MyRunnable implements Runnable {
+public class RunnerAllocateDirect implements Runnable {
 
   private final int threadId;
 
-  public MyRunnable(int threadId) {
+  public RunnerAllocateDirect(int threadId) {
     this.threadId = threadId;
   }
 
