@@ -1,5 +1,9 @@
 package com.mycompany.app;
 
+import java.nio.ByteBuffer;
+import java.util.Vector;
+
+
 public class MyRunnable implements Runnable {
 
   private final int threadId;
@@ -10,13 +14,30 @@ public class MyRunnable implements Runnable {
 
   @Override
   public void run() {
-   // System.out.println("Thread " + threadId + " started");
+    // System.out.println("Thread " + threadId + " started");
 
     try {
-      Thread.sleep( 1000 * 1000);
+      allocateDirect();
+      Thread.sleep(App.sleepSeconds * 1000);
     } catch (Exception e) {
 
     }
     // Your code here
   }
+    public static void allocateDirect() {
+      // Allocate a direct byte buffer with capacity of 1024 bytes
+      System.out.printf("Allocating %d MB of direct Buffer. \n", App.directMB);
+
+      Vector<ByteBuffer> buffers = new Vector<ByteBuffer>();
+      for (int i = 0; i < App.directMB; i++) {
+        ByteBuffer buff = ByteBuffer.allocateDirect((1024 * 1024));
+        buffers.add(buff);
+
+        String data = "some data. ";
+        byte[] bytes = data.getBytes();
+        buff.put(bytes);
+        System.out.print(".");
+      }
+      System.out.println("allocated.");
+    }
 }
