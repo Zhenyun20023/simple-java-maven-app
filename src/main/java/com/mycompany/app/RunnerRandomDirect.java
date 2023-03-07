@@ -36,7 +36,7 @@ public class RunnerRandomDirect implements Runnable {
     Vector<ByteBuffer> buffers = new Vector<ByteBuffer>();
     Random random = new Random();
     while(true) {
-      int rand = random.nextInt(10000);
+      int rand = random.nextInt(100* 1000);
       ByteBuffer buff = ByteBuffer.allocateDirect(rand);
       buffers.add(buff);
       try {
