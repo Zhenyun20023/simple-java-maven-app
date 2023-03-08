@@ -22,10 +22,12 @@ public class App {
             FileChannel channel = file.getChannel();
             MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_WRITE, 0, channel.size());
             System.out.printf("mmap file size: %d MB\n", channel.size()/1024/1024);
-            int offset = mmapMB * 1024 * 1024; //
-            channel.position(offset);
-            buffer.put("some data".getBytes());
-            buffer.force();
+            channel.position(0);
+            String str = "some data.";
+            for(int i=0; i<mmapMB*1024*1024/str.length(); i++) {
+                buffer.put(str.getBytes());
+                buffer.force();
+            }
             file.close();
 
         } catch (Exception e) {
