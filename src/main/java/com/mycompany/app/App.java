@@ -6,7 +6,7 @@ import java.nio.channels.*;
 
 public class App {
     public static int numThreads = 50;
-    public static int directMB = 2; // 10MB, each thread;
+    public static int directMB = 5; // 10MB, each thread;
     public static int mmapMB = 400; // mmap file;
     public static Thread[] threads = new Thread[numThreads];
 
