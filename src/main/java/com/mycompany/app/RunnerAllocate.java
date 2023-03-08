@@ -40,8 +40,7 @@ public class RunnerAllocate implements Runnable {
       ByteBuffer buff = ByteBuffer.allocate(curAlloc);
       buffers.add(buff);
       allocatedBytes += curAlloc;
-      String data = "some data. ";
-      byte[] bytes = data.getBytes();
+      byte[] bytes = new byte[curAlloc];
       buff.put(bytes);
     }
     System.out.printf("I allocated %d MB of allocate().\n", App.directMB);
