@@ -26,6 +26,7 @@ public class App {
             String str = "some data.";
             for(int i=0; i<mmapMB*1024*1024/str.length(); i++) {
                 buffer.put(str.getBytes());
+                buffer.position(i*str.length());
                 buffer.force();
             }
             file.close();
