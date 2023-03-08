@@ -39,7 +39,7 @@ public class App {
 
     public static void startThreads() {
         for (int i = 0; i < numThreads; i++) {
-            threads[i] = new Thread(new RunnerAllocate(i));
+            threads[i] = new Thread(new RunnerAllocateDirect(i));
             threads[i].start();
         }
 
