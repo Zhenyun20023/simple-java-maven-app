@@ -5,6 +5,5 @@ cd ${pid}
 jcmd $pid VM.native_memory > native_memory.txt
 pmap -X $pid > pmap.txt
 cat /proc/${pid}/maps > maps.txt
-perl /home/ec2-user/testing/javaJniMemUsage/javaJniMemUsage.pl maps.txt  > maps.perl.txt
+perl /home/ec2-user/testing/javaJniMemUsage/javaJniMemUsage.pl maps.txt  > perl.maps.txt
 jmap -dump:live,format=b,file=jmap.hprof ${pid}
-jcmd ${pid} GC.heap_dump jcmd.hprof
