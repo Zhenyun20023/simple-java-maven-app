@@ -31,18 +31,37 @@ public class RunnerAllocateDirect implements Runnable {
   }
     public static void allocateDirect() {
       // Allocate a direct byte buffer with capacity of 1024 bytes
-      System.out.printf("Allocating %d MB of direct Buffer. \n", App.directMB);
-      Random rand = new Random(System.currentTimeMillis());
-      Vector<ByteBuffer> buffers = new Vector<ByteBuffer>();
-      int allocatedBytes = 0;
-      while(allocatedBytes < App.directMB * 1024* 1024) {
-        int curAlloc = rand.nextInt(10000);
-        ByteBuffer buff = ByteBuffer.allocateDirect(curAlloc);
-        buffers.add(buff);
-        allocatedBytes += curAlloc;
-        byte[] bytes = new byte[curAlloc];
-        buff.put(bytes);
+
+      while(true) {
+        System.out.printf("Allocating %d MB of direct Buffer. \n", App.directMB);
+        Random rand = new Random(System.currentTimeMillis());
+
+        Vector<ByteBuffer> buffers = new Vector<ByteBuffer>();
+
+        int allocatedBytes = 0;
+        while (allocatedBytes < App.directMB * 1024 * 1024) {
+          int curAlloc = rand.nextInt(10000);
+          ByteBuffer buff = ByteBuffer.allocateDirect(curAlloc);
+          buffers.add(buff);
+          allocatedBytes += curAlloc;
+          byte[] bytes = new byte[curAlloc];
+          buff.put(bytes);
+        }
+
+        System.out.printf("I allocated %d MB of allocateDirect().\n", App.directMB);
+
+        try {
+          int delay = rand.nextInt(60);
+          Thread.sleep(delay * 1000);
+        } catch (Exception e) {
+        }
+
+        for (ByteBuffer bf : buffers) {
+          bf.clear();
+          bf = null;
+        }
+
+        System.out.printf("I released %d MB of allocateDirect().\n", App.directMB);
       }
-      System.out.printf("I allocated %d MB of allocateDirect().\n", App.directMB);
     }
 }

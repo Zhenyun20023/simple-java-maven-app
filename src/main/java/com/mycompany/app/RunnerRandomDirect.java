@@ -30,7 +30,6 @@ public class RunnerRandomDirect implements Runnable {
     // Your code here
   }
   public static void allocateDirect() {
-    // Allocate a direct byte buffer with capacity of 1024 bytes
     System.out.printf("Allocating %d MB of direct Buffer. \n", App.directMB);
 
     Vector<ByteBuffer> buffers = new Vector<ByteBuffer>();

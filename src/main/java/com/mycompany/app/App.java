@@ -5,8 +5,8 @@ import java.nio.channels.*;
 
 
 public class App {
-    public static int numThreads = 2;
-    public static int directMB = 10; // 10MB, each thread;
+    public static int numThreads = 10;
+    public static int directMB = 40; // 10MB, each thread;
     public static int mmapMB = 500; // mmap file;
     public static Thread[] threads = new Thread[numThreads];
 
@@ -44,7 +44,7 @@ public class App {
 
     public static void startThreads() {
         for (int i = 0; i < numThreads; i++) {
-            threads[i] = new Thread(new RunnerAllocate(i));
+            threads[i] = new Thread(new RunnerAllocateDirect(i));
             threads[i].start();
         }
 
@@ -52,7 +52,7 @@ public class App {
     }
     public static void main(String[] args) {
         startThreads();
-        allocateMMAP();
+        // allocateMMAP();
 
         System.out.println("Program is running. ");
         for(int i=0; i<1000*100; i++) {
