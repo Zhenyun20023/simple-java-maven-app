@@ -28,8 +28,6 @@ public class App {
 
             for (int i = 0; i < mmapMB * 1000*1000  - 10; i += 10)
             {
-                // position the buffer to 10
-                System.out.println(i);
                 buffer.position(i);
                 buffer.putInt(i);
             }
