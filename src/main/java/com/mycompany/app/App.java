@@ -5,9 +5,9 @@ import java.nio.channels.*;
 
 
 public class App {
-    public static int numThreads = 1;
-    public static int directMB = 1; // 10MB, each thread;
-    public static int mmapMB = 300; // mmap file;
+    public static int numThreads = 2;
+    public static int directMB = 10; // 10MB, each thread;
+    public static int mmapMB = 100; // mmap file;
     public static Thread[] threads = new Thread[numThreads];
 
     public static int result = 0; // output this;
@@ -16,19 +16,26 @@ public class App {
     }
 
     public static void allocateMMAP() {
-        RandomAccessFile file = null;
         try {
-            file = new RandomAccessFile("/tmp/file.mmap", "rw");
+            // create a random access file object
+            RandomAccessFile file = new RandomAccessFile("/tmp/example.dat", "rw");
+            file.setLength(mmapMB * 1024 * 1024);
+            // get a file channel from the file
             FileChannel channel = file.getChannel();
-            MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_WRITE, 0, channel.size());
-            System.out.printf("mmap file size: %d MB\n", channel.size()/1024/1024);
-            channel.position(0);
-            String str = "some data.";
-            for(int i=0; i< mmapMB*1024*1024/str.length(); i++) {
-                buffer.put(str.getBytes());
-                buffer.position(i*str.length());
-                buffer.force();
+
+            // map the file into memory
+            MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_WRITE, 0, file.length());
+
+            for (int i = 0; i < mmapMB * 1000*1000  - 10; i += 10)
+            {
+                // position the buffer to 10
+                System.out.println(i);
+                buffer.position(i);
+                buffer.putInt(i);
             }
+
+            // close the file and channel
+            channel.close();
             file.close();
 
         } catch (Exception e) {
