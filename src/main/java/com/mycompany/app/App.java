@@ -6,8 +6,8 @@ import java.nio.channels.*;
 
 public class App {
     public static int numThreads = 10;
-    public static int directMB = 100; // 10MB, each thread;
-    public static int mmapMB = 400; // mmap file;
+    public static int directMB = 1; // 10MB, each thread;
+    public static int mmapMB = 800; // mmap file;
     public static Thread[] threads = new Thread[numThreads];
 
     public static int result = 0; // output this;
@@ -18,7 +18,7 @@ public class App {
     public static void allocateMMAP() {
         RandomAccessFile file = null;
         try {
-            file = new RandomAccessFile("/tmp/file.400MB", "rw");
+            file = new RandomAccessFile("/tmp/file.mmap", "rw");
             FileChannel channel = file.getChannel();
             MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_WRITE, 0, channel.size());
             System.out.printf("mmap file size: %d MB\n", channel.size()/1024/1024);
@@ -48,7 +48,7 @@ public class App {
     public static void main(String[] args) {
         startThreads();
         allocateMMAP();
-        //
+
         System.out.println("Program is running. ");
         for(int i=0; i<1000*100; i++) {
             try {
