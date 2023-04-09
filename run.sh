@@ -1,6 +1,6 @@
 cd src/main/java;
 javac com/mycompany/app/*.java;
-java -cp . -Xms500M -Xmx500M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:NativeMemoryTracking=summary -XX:+AlwaysPreTouch -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/logs/ -XX:+ExitOnOutOfMemoryError -XX:MaxDirectMemorySize=400M  com.mycompany.app.App
+java -cp . -Xms1000M -Xmx1000M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:NativeMemoryTracking=summary -XX:+AlwaysPreTouch -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/logs/ -XX:+ExitOnOutOfMemoryError -XX:MaxDirectMemorySize=1000M  com.mycompany.app.App
 
 
 # -Djdk.nio.maxCachedBufferSize=262144
