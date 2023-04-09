@@ -5,9 +5,9 @@ import java.nio.channels.*;
 
 
 public class App {
-    public static int numThreads = 10;
+    public static int numThreads = 1;
     public static int directMB = 1; // 10MB, each thread;
-    public static int mmapMB = 800; // mmap file;
+    public static int mmapMB = 300; // mmap file;
     public static Thread[] threads = new Thread[numThreads];
 
     public static int result = 0; // output this;
@@ -24,7 +24,7 @@ public class App {
             System.out.printf("mmap file size: %d MB\n", channel.size()/1024/1024);
             channel.position(0);
             String str = "some data.";
-            for(int i=0; i<mmapMB*1024*1024/str.length(); i++) {
+            for(int i=0; i< mmapMB*1024*1024/str.length(); i++) {
                 buffer.put(str.getBytes());
                 buffer.position(i*str.length());
                 buffer.force();
@@ -39,7 +39,7 @@ public class App {
 
     public static void startThreads() {
         for (int i = 0; i < numThreads; i++) {
-            threads[i] = new Thread(new RunnerAllocateDirect(i));
+            threads[i] = new Thread(new RunnerAllocate(i));
             threads[i].start();
         }
 
