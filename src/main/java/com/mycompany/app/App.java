@@ -2,15 +2,19 @@ package com.mycompany.app;
 import java.io.*;
 import java.nio.*;
 import java.nio.channels.*;
-
+import org.rocksdb.RocksDB;
+import org.rocksdb.Options;
+import org.rocksdb.RocksDBException;
 
 public class App {
-    public static int numThreads = 40;
-    public static int directMB = 20; // 10MB, each thread;
+    public static int numThreads = 1;
+    public static int directMB = 1; // 10MB, each thread;
     public static int mmapMB = 500; // mmap file;
     public static Thread[] threads = new Thread[numThreads];
 
     public static int result = 0; // output this;
+
+    public static int numDBKeysM = 100; // millions of rocksdb keys;
 
     public App() {
     }
@@ -55,6 +59,8 @@ public class App {
         // allocateMMAP();
 
         System.out.println("Program is running. ");
+        RocksDBKeys.testAddingKeys(numDBKeysM);
+
         for(int i=0; i<1000*100; i++) {
             try {
                 Thread.sleep(10 * 1000);
@@ -62,5 +68,7 @@ public class App {
             }
             System.out.printf("NumThreads= %d, each %d MB; The result is %d .\n", numThreads, directMB, result);
         }
+
+
     }
 }
