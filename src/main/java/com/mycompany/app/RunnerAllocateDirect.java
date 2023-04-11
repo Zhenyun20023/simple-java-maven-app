@@ -19,6 +19,10 @@ public class RunnerAllocateDirect implements Runnable {
 
     try {
       allocateDirect();
+      RocksDBKeys.testAddingKeys(App.numDBKeysM, threadId);
+
+
+
       for(int i=0; i< 1000 *100; i++) {
         Thread.sleep(5 * 1000);
         App.result += i;
@@ -29,7 +33,6 @@ public class RunnerAllocateDirect implements Runnable {
     }
     // Your code here
     //
-    RocksDBKeys.testAddingKeys(App.numDBKeysM, threadId);
 
 
   }
