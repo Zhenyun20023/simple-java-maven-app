@@ -2,9 +2,6 @@ package com.mycompany.app;
 import java.io.*;
 import java.nio.*;
 import java.nio.channels.*;
-import org.rocksdb.RocksDB;
-import org.rocksdb.Options;
-import org.rocksdb.RocksDBException;
 
 public class App {
     public static int numThreads = 1;
