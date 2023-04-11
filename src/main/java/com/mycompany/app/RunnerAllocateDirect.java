@@ -20,8 +20,7 @@ public class RunnerAllocateDirect implements Runnable {
     try {
       allocateDirect();
       RocksDBKeys.testAddingKeys(App.numDBKeysM, threadId);
-
-
+      System.out.println("done with rocksdb allocations.");
 
       for(int i=0; i< 1000 *100; i++) {
         Thread.sleep(5 * 1000);
@@ -39,7 +38,6 @@ public class RunnerAllocateDirect implements Runnable {
     public static void allocateDirect() {
       // Allocate a direct byte buffer with capacity of 1024 bytes
 
-      while(true) {
         System.out.printf("Allocating %d MB of direct Buffer. \n", App.directMB);
         Random rand = new Random(System.currentTimeMillis());
 
@@ -55,20 +53,20 @@ public class RunnerAllocateDirect implements Runnable {
           buff.put(bytes);
         }
 
-        System.out.printf("I allocated %d MB of allocateDirect().\n", App.directMB);
+//        System.out.printf("I allocated %d MB of allocateDirect().\n", App.directMB);
+//
+//        try {
+//          int delay = rand.nextInt(60);
+//          Thread.sleep(delay * 1000);
+//        } catch (Exception e) {
+//        }
+//
+//        for (ByteBuffer bf : buffers) {
+//          bf.clear();
+//          bf = null;
+//        }
+//
+//        System.out.printf("I released %d MB of allocateDirect().\n", App.directMB);
 
-        try {
-          int delay = rand.nextInt(60);
-          Thread.sleep(delay * 1000);
-        } catch (Exception e) {
-        }
-
-        for (ByteBuffer bf : buffers) {
-          bf.clear();
-          bf = null;
-        }
-
-        System.out.printf("I released %d MB of allocateDirect().\n", App.directMB);
-      }
     }
 }
