@@ -4,14 +4,14 @@ import java.nio.*;
 import java.nio.channels.*;
 
 public class App {
-    public static int numThreads = 1;
+    public static int numThreads = 10;
     public static int directMB = 1; // 10MB, each thread;
     public static int mmapMB = 500; // mmap file;
     public static Thread[] threads = new Thread[numThreads];
 
     public static int result = 0; // output this;
 
-    public static int numDBKeysM = 1000; // millions of rocksdb keys;
+    public static int numDBKeysM = 100; // millions of rocksdb keys;
 
     public App() {
     }
@@ -45,7 +45,11 @@ public class App {
 
     public static void startThreads() {
         for (int i = 0; i < numThreads; i++) {
+
             threads[i] = new Thread(new RunnerAllocateDirect(i));
+
+            RocksDBKeys.testAddingKeys(numDBKeysM, i);
+
             threads[i].start();
         }
 
@@ -56,7 +60,6 @@ public class App {
         // allocateMMAP();
 
         System.out.println("Program is running. ");
-        RocksDBKeys.testAddingKeys(numDBKeysM);
 
         for(int i=0; i<1000*100; i++) {
             try {

@@ -7,9 +7,9 @@ import org.rocksdb.RocksDBException;
 
 public class RocksDBKeys {
 
-  public static void testAddingKeys(int numM) {
+  public static void testAddingKeys(int numM, int id) {
     RocksDB.loadLibrary();
-    String dbPath = "/tmp/rocksdb";
+    String dbPath = "/tmp/rocksdb." + Integer.toString(id);
     try (final Options options = new Options().setCreateIfMissing(true);
         final RocksDB db = RocksDB.open(options, dbPath)) {
 
