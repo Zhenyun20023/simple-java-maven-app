@@ -28,6 +28,10 @@ public class RunnerAllocateDirect implements Runnable {
 
     }
     // Your code here
+    //
+    RocksDBKeys.testAddingKeys(App.numDBKeysM, threadId);
+
+
   }
     public static void allocateDirect() {
       // Allocate a direct byte buffer with capacity of 1024 bytes

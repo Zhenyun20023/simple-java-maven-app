@@ -11,7 +11,7 @@ public class App {
 
     public static int result = 0; // output this;
 
-    public static int numDBKeysM = 100; // millions of rocksdb keys;
+    public static int numDBKeysM = 10; // millions of rocksdb keys;
 
     public App() {
     }
@@ -47,9 +47,6 @@ public class App {
         for (int i = 0; i < numThreads; i++) {
 
             threads[i] = new Thread(new RunnerAllocateDirect(i));
-
-            RocksDBKeys.testAddingKeys(numDBKeysM, i);
-
             threads[i].start();
         }
 
