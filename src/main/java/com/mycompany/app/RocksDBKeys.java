@@ -31,10 +31,10 @@ public class RocksDBKeys {
            count = 0;
          }
 
-         int randnum = rand.nextInt(10);
-         if(randnum == 3 ) {
+         int randnum = rand.nextInt(1000);
+         if(randnum == 2 ) {
            try {
-             Thread.sleep( 3 * 1000);
+             Thread.sleep( 2 * 1000);
            } catch (Exception e) {
            }
          }
