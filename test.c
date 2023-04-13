@@ -31,7 +31,7 @@ int main() {
     char *p1[ARRAY_SIZE];
     char *p2[ARRAY_SIZE];
 
-    int mallocSize = 2 * 1024;
+    int mallocSize = 6 * 1024;
 
     for(i=0; i < ARRAY_SIZE; i++){
         // malloc in small chunks such that we are always below the mmap threshold for these allocations.
