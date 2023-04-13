@@ -30,7 +30,6 @@ int main() {
     // small allocations that we expect to be brk()'d.  We keep the mapping so we can free them later.
     char *p1[ARRAY_SIZE];
     char *p2[ARRAY_SIZE];
-    char *p3[ARRAY_SIZE];
 
     int mallocSize = 2 * 1024;
 
@@ -53,15 +52,6 @@ int main() {
     printf(ALLOCATED);
     press_enter_to_continue();
 
-        for(i=0; i < ARRAY_SIZE; i++){
-            // Again, malloc in small chunks such that we are always below the mmap threshold for these allocations
-            p3[i] = malloc(mallocSize);
-           *p3[i] = 'a';
-        }
-
-        printf(ALLOCATED);
-        press_enter_to_continue();
-
     // Free the allocations
     for(i=0; i < ARRAY_SIZE; i++){
         free(p1[i]);
@@ -78,12 +68,5 @@ int main() {
     printf(FREED_NEXT);
     press_enter_to_continue();
 
-   // Free the allocations
-    for(i=0; i < ARRAY_SIZE; i++){
-        free(p3[i]);
-    }
-
-    printf(FREED_NEXT);
-    press_enter_to_continue();
     return 0;
 }
