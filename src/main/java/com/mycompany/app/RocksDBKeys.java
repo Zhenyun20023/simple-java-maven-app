@@ -6,7 +6,7 @@ import org.rocksdb.RocksDB;
 import org.rocksdb.RocksDBException;
 
 public class RocksDBKeys {
-  public static int report_freq_Millions = 10*1000 * 1000;
+  public static int report_freq_Millions = 1*1000 * 1000;
 
   public static void testAddingKeys(int numM, int id) {
     RocksDB.loadLibrary();
