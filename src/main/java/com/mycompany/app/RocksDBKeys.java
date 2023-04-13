@@ -1,5 +1,6 @@
 package com.mycompany.app;
-
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import java.util.Random;
 import org.rocksdb.Options;
 import org.rocksdb.RocksDB;
@@ -28,6 +29,9 @@ public class RocksDBKeys {
          count ++;
          App.totalPutKeys ++;
          if (count == report_freq_Millions) {
+           DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+           LocalDateTime now = LocalDateTime.now();
+           System.out.println(dtf.format(now));
            System.out.printf("Totally added: %d M keys. \n", App.totalPutKeys /1000/1000);
            count = 0;
          }
