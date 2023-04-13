@@ -30,6 +30,14 @@ public class RocksDBKeys {
            System.out.printf("Just added %d M keys. \n", report_freq_Millions /1000/1000);
            count = 0;
          }
+
+         int randnum = rand.nextInt(10);
+         if(randnum == 3 ) {
+           try {
+             Thread.sleep( 3 * 1000);
+           } catch (Exception e) {
+           }
+         }
      }
 
     } catch (RocksDBException e) {
