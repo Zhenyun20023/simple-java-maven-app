@@ -5,6 +5,9 @@
 mvn compile;
 mvn package;
 
+#export LD_PRELOAD=/usr/local/lib/libjemalloc.so
+export LD_PRELOAD=
+
 java -cp target/my-app-1.0-SNAPSHOT-jar-with-dependencies.jar -Xms1000M -Xmx1000M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:NativeMemoryTracking=summary -XX:+AlwaysPreTouch -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/logs/ -XX:+ExitOnOutOfMemoryError -XX:MaxDirectMemorySize=1000M  com.mycompany.app.App
 
 
