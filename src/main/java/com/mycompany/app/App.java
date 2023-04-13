@@ -4,14 +4,14 @@ import java.nio.*;
 import java.nio.channels.*;
 
 public class App {
-    public static int numThreads = 60;
+    public static int numThreads = 4;
     public static int directMB = 1; // 10MB, each thread;
     public static int mmapMB = 500; // mmap file;
     public static Thread[] threads = new Thread[numThreads];
 
     public static int result = 0; // output this;
 
-    public static int numDBKeysM = 4; // millions of rocksdb keys;
+    public static int numDBKeysM = 10; // millions of rocksdb keys;
     public static int totalPutKeys = 0; // total added keys;
 
     public App() {
@@ -64,7 +64,6 @@ public class App {
                 Thread.sleep(10 * 1000);
             } catch (Exception e) {
             }
-            System.out.printf("NumThreads= %d, each %d MB; The result is %d .\n", numThreads, directMB, result);
         }
 
 
