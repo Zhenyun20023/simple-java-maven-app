@@ -11,7 +11,7 @@ public class App {
 
     public static int result = 0; // output this;
 
-    public static int numDBKeysM = 5; // millions of rocksdb keys;
+    public static int numDBKeysM = 3; // millions of rocksdb keys;
 
     public App() {
     }
