@@ -26,17 +26,10 @@ public class RocksDBKeys {
          db.put(key1, value1);
 
          count ++;
+         App.totalPutKeys ++;
          if (count == report_freq_Millions) {
-           System.out.printf("Just added %d M keys. \n", report_freq_Millions /1000/1000);
+           System.out.printf("Totally added: %d M keys. \n", App.totalPutKeys /1000/1000);
            count = 0;
-         }
-
-         int randnum = rand.nextInt(10000);
-         if(randnum == 2 ) {
-           try {
-             Thread.sleep( 1 * 1000);
-           } catch (Exception e) {
-           }
          }
      }
 

@@ -12,6 +12,7 @@ public class App {
     public static int result = 0; // output this;
 
     public static int numDBKeysM = 4; // millions of rocksdb keys;
+    public static int totalPutKeys = 0; // total added keys;
 
     public App() {
     }
