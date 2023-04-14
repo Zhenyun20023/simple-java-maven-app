@@ -13,7 +13,7 @@ public class RocksDBKeys {
   public static void testAddingKeys(int numM, int id) {
     RocksDB.loadLibrary();
     BlockBasedTableConfig tableOptions = new BlockBasedTableConfig();
-    tableOptions.setBlockCacheSize(1073741824L); // 1 GB block cache size
+    tableOptions.setBlockCacheSize(573741824L); // 1 GB block cache size
 
     Options options = new Options();
     options.setMaxOpenFiles(-1); // -1 means use the OS default
