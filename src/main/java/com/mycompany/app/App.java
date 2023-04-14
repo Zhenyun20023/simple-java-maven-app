@@ -22,10 +22,7 @@ public class App {
             // create a random access file object
             RandomAccessFile file = new RandomAccessFile("/tmp/example.dat", "rw");
             file.setLength(mmapMB * 1024 * 1024);
-            // get a file channel from the file
             FileChannel channel = file.getChannel();
-
-            // map the file into memory
             MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_WRITE, 0, file.length());
 
             for (int i = 0; i < mmapMB * 1000*1000  - 10; i += 10)
@@ -33,11 +30,8 @@ public class App {
                 buffer.position(i);
                 buffer.putInt(i);
             }
-
-            // close the file and channel
             channel.close();
             file.close();
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

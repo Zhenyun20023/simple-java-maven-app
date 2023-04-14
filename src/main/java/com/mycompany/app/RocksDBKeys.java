@@ -38,8 +38,10 @@ public class RocksDBKeys {
          int keyid = rand.nextInt(numM * 1000 * 1000);
          byte[] key1 = Integer.toString(keyid).getBytes();
 
-         int value = rand.nextInt(numM * 1000 * 1000);
-         byte[] value1 = Integer.toString(value).getBytes();
+         int size = rand.nextInt(id * numM * 1000);
+
+         byte[] value1 = new byte[size];
+         rand.nextBytes(value1);
          db.put(key1, value1);
 
          count ++;
@@ -47,8 +49,8 @@ public class RocksDBKeys {
          if (count == report_freq_Millions) {
            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
            LocalDateTime now = LocalDateTime.now();
-           System.out.println(dtf.format(now));
-           System.out.printf("Totally added: %d M keys. \n", App.totalPutKeys /1000/1000);
+           System.out.print(dtf.format(now));
+           System.out.printf(" Totally added: %d M keys. \n", App.totalPutKeys /1000/1000);
            count = 0;
          }
      }
