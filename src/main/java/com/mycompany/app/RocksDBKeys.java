@@ -52,6 +52,11 @@ public class RocksDBKeys {
            System.out.print(dtf.format(now));
            System.out.printf(" Totally added: %d M keys. \n", App.totalPutKeys /1000/1000);
            count = 0;
+
+           try {
+             Thread.sleep(10 * 1000);
+           } catch (Exception e) {
+           }
          }
      }
 
