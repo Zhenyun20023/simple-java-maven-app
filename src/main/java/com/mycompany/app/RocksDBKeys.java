@@ -13,13 +13,14 @@ public class RocksDBKeys {
   public static void testAddingKeys(int numM, int id) {
     RocksDB.loadLibrary();
     BlockBasedTableConfig tableOptions = new BlockBasedTableConfig();
-    tableOptions.setBlockCacheSize(573741824L); // 1 GB block cache size
+    tableOptions.setBlockCacheSize(1073741824L); // 1 GB block cache size
 
     Options options = new Options();
     options.setMaxOpenFiles(-1); // -1 means use the OS default
     options.setCreateIfMissing(true);
     options.setAllowMmapWrites(true);
     options.setAllowMmapReads(true);
+    options.setIncreaseParallelism(8);
     options.setTableFormatConfig(tableOptions);
     options.setWriteBufferSize(267108864L); // 264 MB write buffer size
     options.setMaxWriteBufferNumber(3); // 3 write buffers
@@ -54,7 +55,7 @@ public class RocksDBKeys {
            count = 0;
 
            try {
-             Thread.sleep(10 * 1000);
+             Thread.sleep(5 * 1000);
            } catch (Exception e) {
            }
          }
