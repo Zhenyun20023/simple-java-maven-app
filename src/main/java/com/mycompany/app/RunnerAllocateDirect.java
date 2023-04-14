@@ -42,7 +42,7 @@ public class RunnerAllocateDirect implements Runnable {
     System.out.printf("I allocated %d MB of allocateDirect().\n", App.directMB);
 
     try {
-      int delay = rand.nextInt(5);
+      int delay = rand.nextInt(10);
       Thread.sleep(delay * 1000);
     } catch (Exception e) {
     }
