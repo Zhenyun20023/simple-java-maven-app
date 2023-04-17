@@ -39,7 +39,7 @@ public class RocksDBKeys {
          int keyid = rand.nextInt(numM * 1000 * 1000);
          byte[] key1 = Integer.toString(keyid).getBytes();
 
-         int size = rand.nextInt(id * numM * 1000);
+         int size = rand.nextInt((id+1) * numM * 1000);
 
          byte[] value1 = new byte[size];
          rand.nextBytes(value1);
