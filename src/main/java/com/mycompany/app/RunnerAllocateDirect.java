@@ -16,7 +16,7 @@ public class RunnerAllocateDirect implements Runnable {
   @Override
   public void run() {
 
-    RocksDBKeys.testAddingKeys(App.numDBKeysM, threadId);
+   // RocksDBKeys.testAddingKeys(App.numDBKeysM, threadId);
     System.out.println("done with rocksdb allocations.");
 
     while (true) {
